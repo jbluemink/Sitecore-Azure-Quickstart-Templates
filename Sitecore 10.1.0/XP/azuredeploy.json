@@ -953,9 +953,6 @@
           "sqlServerName": {
             "value": "[parameters('sqlServerName')]"
           },
-"sqlElasticPoolName": {
-"value": "[parameters('sqlElasticPoolName')]"
-},
           "sqlDatabaseCollation": {
             "value": "[parameters('sqlDatabaseCollation')]"
           },
