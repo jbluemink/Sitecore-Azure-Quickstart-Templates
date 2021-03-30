@@ -4,7 +4,7 @@
   "variables": {
     "webApiVersion": "2018-02-01",
     "dbApiVersion": "2014-04-01-preview",
-
+ "sqlElasticPoolTidy": "[toLower(trim(parameters('sqlElasticPoolName')))]",
     "sqlServerNameTidy": "[toLower(trim(parameters('sqlServerName')))]",
 
     "maSqlDatabaseNameTidy": "[toLower(trim(parameters('maSqlDatabaseName')))]",
@@ -45,7 +45,11 @@
       "minLength": 1,
       "defaultValue": "[concat(parameters('deploymentId'), '-sql')]"
     },
-
+"sqlElasticPoolName": {
+"type": "string",
+"minLength": 1,
+"defaultValue": "[concat(parameters('deploymentId'), '-sqlpool')]"
+},
     "sqlDatabaseCollation": {
       "type": "string",
       "minLength": 1,
@@ -141,10 +145,8 @@
       "location": "[parameters('location')]",
       "apiVersion": "[variables('dbApiVersion')]",
       "properties": {
-        "edition": "[parameters('resourceSizes').maSqlDatabase.Edition]",
-        "collation": "[parameters('sqlDatabaseCollation')]",
-        "maxSizeBytes": "[parameters('resourceSizes').maSqlDatabase.MaxSize]",
-        "requestedServiceObjectiveName": "[parameters('resourceSizes').maSqlDatabase.ServiceObjectiveLevel]"
+        "elasticPoolId": "[resourceId('Microsoft.Sql/servers/elasticpools', variables('sqlServerNameTidy') , variables('sqlElasticPoolTidy'))]",
+        "collation": "[parameters('sqlDatabaseCollation')]"
       },
       "resources": [
         {
