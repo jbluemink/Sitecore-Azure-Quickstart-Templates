@@ -92,7 +92,6 @@
       "type": "securestring",
       "minLength": 8
     },
-
     "sqlServerVersion": {
       "type": "string",
       "minLength": 1,
@@ -103,7 +102,37 @@
       "minLength": 1,
       "defaultValue": "SQL_Latin1_General_CP1_CI_AS"
     },
-
+"SqlServerFirewallRules": {
+    "type": "array",
+    "metadata": {
+	"description": "Array with custom hostnames (URL's) for the Web App"
+    }
+},
+"sqlElasticPoolName": {
+    "type": "string",
+    "minLength": 1,
+    "defaultValue": "[concat(parameters('deploymentId'), '-sqlpool')]"
+},
+"sqlElasticPoolskuName": {
+    "type": "string",
+    "minLength": 1,
+    "defaultValue": "StandardPool"
+},
+"sqlElasticPoolTier": {
+    "type": "string",
+    "minLength": 1,
+    "defaultValue": "Standard"
+},
+"sqlElasticPoolLimit": {
+    "type": "string",
+    "minLength": 1,
+    "defaultValue": "100"
+},
+"sqlElasticPoolStorageSize": {
+    "type": "int",
+    "minValue": 1000000000,
+    "defaultValue": 50000000000
+},
     "coreSqlDatabaseName": {
       "type": "string",
       "minLength": 1,
@@ -727,6 +756,24 @@
           "sqlServerName": {
             "value": "[parameters('sqlServerName')]"
           },
+ "sqlElasticPoolName": {
+"value": "[parameters('sqlElasticPoolName')]"
+},
+"sqlElasticPoolskuName": {
+"value": "[parameters('sqlElasticPoolskuName')]"
+},
+"sqlElasticPoolTier": {
+"value": "[parameters('sqlElasticPoolTier')]"
+},
+"sqlElasticPoolLimit": {
+"value": "[parameters('sqlElasticPoolLimit')]"
+},
+"sqlElasticPoolStorageSize": {
+"value": "[parameters('sqlElasticPoolStorageSize')]"
+},
+"SqlServerFirewallRules": {
+"value": "[parameters('SqlServerFirewallRules')]"
+},
           "sqlServerLogin": {
             "value": "[parameters('sqlServerLogin')]"
           },
@@ -906,7 +953,9 @@
           "sqlServerName": {
             "value": "[parameters('sqlServerName')]"
           },
-
+"sqlElasticPoolName": {
+"value": "[parameters('sqlElasticPoolName')]"
+},
           "sqlDatabaseCollation": {
             "value": "[parameters('sqlDatabaseCollation')]"
           },
@@ -1014,7 +1063,9 @@
           "sqlServerName": {
             "value": "[parameters('sqlServerName')]"
           },
-
+"sqlElasticPoolName": {
+"value": "[parameters('sqlElasticPoolName')]"
+},
           "sqlDatabaseCollation": {
             "value": "[parameters('sqlDatabaseCollation')]"
           },
