@@ -5,11 +5,12 @@
     "webApiVersion": "2018-02-01",
     "serverFarmApiVersion": "2018-02-01",
     "dbApiVersion": "2014-04-01-preview",
+"elasticPoolApiVersion": "2017-10-01-preview",
     "searchApiVersion": "2015-08-19",
     "redisApiVersion": "2016-04-01",
     "appInsightsApiVersion": "2015-05-01",
     "certificateApiVersion": "2014-11-01",
-
+"sqlElasticPoolTidy": "[toLower(trim(parameters('sqlElasticPoolName')))]",
     "sqlServerNameTidy": "[toLower(trim(parameters('sqlServerName')))]",
 
     "coreSqlDatabaseNameTidy": "[toLower(trim(parameters('coreSqlDatabaseName')))]",
@@ -138,7 +139,37 @@
       "minLength": 1,
       "defaultValue": "SQL_Latin1_General_CP1_CI_AS"
     },
-
+"sqlElasticPoolName": {
+    "type": "string",
+    "minLength": 1,
+    "defaultValue": "[concat(parameters('deploymentId'), '-sqlpool')]"
+},
+"sqlElasticPoolskuName": {
+    "type": "string",
+    "minLength": 1,
+    "defaultValue": "StandardPool"
+},
+"sqlElasticPoolTier": {
+    "type": "string",
+    "minLength": 1,
+    "defaultValue": "Standard"
+},
+"sqlElasticPoolLimit": {
+    "type": "string",
+    "minLength": 1,
+    "defaultValue": "300"
+},
+"sqlElasticPoolStorageSize": {
+    "type": "int",
+    "minValue": 1000000000,
+    "defaultValue": 50000000000
+},
+"SqlServerFirewallRules": {
+    "type": "array",
+    "metadata": {
+	"description": "Array with custom Firewall rules for the SQL Server"
+    }
+},
     "coreSqlDatabaseName": {
       "type": "string",
       "minLength": 1,
@@ -1071,6 +1102,28 @@
         "provider": "[variables('sitecoreTags').provider]"
       },
       "resources": [
+{
+  "apiVersion": "[variables('elasticPoolApiVersion')]",
+  "dependsOn": [
+      "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]"
+  ],
+  "location": "[parameters('location')]",
+  "name": "[concat(variables('sqlServerNameTidy'), '/', variables('sqlElasticPoolTidy'))]",
+  "sku": {
+      "name": "[parameters('sqlElasticPoolskuName')]",
+      "tier": "[parameters('sqlElasticPoolTier')]",
+      "capacity": "[parameters('sqlElasticPoolLimit')]"
+  },
+  "properties": {
+      "perDatabaseSettings": {
+	  "minVCores": "[parameters('sqlPerDatabasePerformanceMin')]",
+	  "maxVCores": "[parameters('perDatabasePerformanceMax')]"
+      },
+      "licenseType": "",
+      "storageMB": "[parameters('sqlElasticPoolStorageSize')]"
+  },
+  "type": "Microsoft.Sql/servers/elasticpools"
+},
         {
           "type": "firewallrules",
           "apiVersion": "[variables('dbApiVersion')]",
@@ -1092,6 +1145,7 @@
           },
           "resources": [
             {
+            
               "name": "current",
               "type": "transparentDataEncryption",
               "dependsOn": [
@@ -1293,6 +1347,24 @@
         }
       ]
     },
+{
+"type": "Microsoft.Sql/servers/firewallRules",
+"name": "[concat(variables('sqlServerNameTidy'), '/', 'SqlFirewallRule-', parameters('SqlServerFirewallRules')[copyIndex()].Name)]",
+"copy": {
+    "name": "firewallRulesCopy",
+    "count": "[length(parameters('SqlServerFirewallRules'))]",
+    "mode": "serial",
+    "batchSize": 1
+},
+"apiVersion": "[variables('dbApiVersion')]",
+"properties": {
+    "startIpAddress": "[parameters('SqlServerFirewallRules')[copyIndex()].startIpAddress]",
+    "endIpAddress": "[parameters('SqlServerFirewallRules')[copyIndex()].endIpAddress]"
+},
+"dependsOn": [
+    "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]"
+]
+},
     {
       "type": "Microsoft.Search/searchServices",
       "condition": "[parameters('deployAzureSearch')]",
