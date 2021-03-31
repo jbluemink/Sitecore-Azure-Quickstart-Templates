@@ -102,7 +102,7 @@
       "minLength": 1,
       "defaultValue": "SQL_Latin1_General_CP1_CI_AS"
     },
-"SqlServerFirewallRules": {
+"sqlServerFirewallRules": {
     "type": "array",
     "metadata": {
 	"description": "Array with custom hostnames (URL's) for the Web App"
