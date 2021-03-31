@@ -162,7 +162,7 @@
 "sqlElasticPoolStorageSize": {
     "type": "int",
     "minValue": 1000000000,
-    "defaultValue": 50000000000]
+    "defaultValue": 50000000000
 },
 "SqlServerFirewallRules": {
     "type": "array",
