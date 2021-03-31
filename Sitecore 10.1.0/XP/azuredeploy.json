@@ -771,8 +771,8 @@
 "sqlElasticPoolStorageSize": {
 "value": "[parameters('sqlElasticPoolStorageSize')]"
 },
-"SqlServerFirewallRules": {
-"value": "[parameters('SqlServerFirewallRules')]"
+"sqlServerFirewallRules": {
+"value": "[parameters('sqlServerFirewallRules')]"
 },
           "sqlServerLogin": {
             "value": "[parameters('sqlServerLogin')]"
