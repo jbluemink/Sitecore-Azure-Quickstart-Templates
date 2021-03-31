@@ -46,7 +46,9 @@
       "defaultValue": "[concat(parameters('deploymentId'), '-sql')]"
     },
 "sqlElasticPoolName": {
-    "value": "[parameters('sqlElasticPoolName')]"
+    "type": "string",
+    "minLength": 1,
+    "defaultValue": "[parameters('sqlElasticPoolName')]"
 },
     "sqlDatabaseCollation": {
       "type": "string",

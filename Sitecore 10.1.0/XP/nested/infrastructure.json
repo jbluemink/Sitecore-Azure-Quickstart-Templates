@@ -140,22 +140,35 @@
       "defaultValue": "SQL_Latin1_General_CP1_CI_AS"
     },
 "sqlElasticPoolName": {
-    "value": "[parameters('sqlElasticPoolName')]"
+    "type": "string",
+    "minLength": 1,
+    "defaultValue": "[parameters('sqlElasticPoolName')]"
 },
 "sqlElasticPoolskuName": {
-    "value": "[parameters('sqlElasticPoolskuName')]"
+    "type": "string",
+    "minLength": 1,
+    "defaultValue": "[parameters('sqlElasticPoolskuName')]"
 },
 "sqlElasticPoolTier": {
-    "value": "[parameters('sqlElasticPoolTier')]"
+    "type": "string",
+    "minLength": 1,
+    "defaultValue": "[parameters('sqlElasticPoolTier')]"
 },
 "sqlElasticPoolLimit": {
-    "value": "[parameters('sqlElasticPoolLimit')]"
+    "type": "string",
+    "minLength": 1,
+    "defaultValue": "[parameters('sqlElasticPoolLimit')]"
 },
 "sqlElasticPoolStorageSize": {
-    "value": "[parameters('sqlElasticPoolStorageSize')]"
+    "type": "int",
+    "minValue": 1000000000,
+    "defaultValue": [parameters('sqlElasticPoolStorageSize')]
 },
-"sqlServerFirewallRules": {
-    "value": "[parameters('sqlServerFirewallRules')]"
+"SqlServerFirewallRules": {
+    "type": "array",
+    "metadata": {
+	"description": "Array with custom Firewall rules for the SQL Server"
+    }
 },
     "coreSqlDatabaseName": {
       "type": "string",
