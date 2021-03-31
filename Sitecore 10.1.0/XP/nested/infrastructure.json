@@ -1137,12 +1137,11 @@
         {
           "type": "databases",
           "apiVersion": "[variables('dbApiVersion')]",
-          "properties": {
-            "edition": "[parameters('resourceSizes').coreSqlDatabase.Edition]",
-            "collation": "[parameters('sqlDatabaseCollation')]",
-            "maxSizeBytes": "[parameters('resourceSizes').coreSqlDatabase.MaxSize]",
-            "requestedServiceObjectiveName": "[parameters('resourceSizes').coreSqlDatabase.ServiceObjectiveLevel]"
-          },
+  "properties": {
+    "edition": "[parameters('resourceSizes').coreSqlDatabase.Edition]",
+    "collation": "[parameters('sqlDatabaseCollation')]",
+    "elasticPoolId": "[resourceId('Microsoft.Sql/servers/elasticpools', variables('sqlServerNameTidy') , variables('sqlElasticPoolTidy'))]",
+  },
           "resources": [
             {
             
@@ -1168,12 +1167,10 @@
         {
           "type": "databases",
           "apiVersion": "[variables('dbApiVersion')]",
-          "properties": {
-            "edition": "[parameters('resourceSizes').masterSqlDatabase.Edition]",
-            "collation": "[parameters('sqlDatabaseCollation')]",
-            "maxSizeBytes": "[parameters('resourceSizes').masterSqlDatabase.MaxSize]",
-            "requestedServiceObjectiveName": "[parameters('resourceSizes').masterSqlDatabase.ServiceObjectiveLevel]"
-          },
+    "properties": {
+	"elasticPoolId": "[resourceId('Microsoft.Sql/servers/elasticpools', variables('sqlServerNameTidy') , variables('sqlElasticPoolTidy'))]",
+	"collation": "[parameters('sqlDatabaseCollation')]"
+    },
           "resources": [
             {
               "name": "current",
@@ -1198,12 +1195,10 @@
 		    {
           "type": "databases",
           "apiVersion": "[variables('dbApiVersion')]",
-          "properties": {
-            "edition": "[parameters('resourceSizes').webSqlDatabase.Edition]",
-            "collation": "[parameters('sqlDatabaseCollation')]",
-            "maxSizeBytes": "[parameters('resourceSizes').webSqlDatabase.MaxSize]",
-            "requestedServiceObjectiveName": "[parameters('resourceSizes').webSqlDatabase.ServiceObjectiveLevel]"
-          },
+    "properties": {
+	"elasticPoolId": "[resourceId('Microsoft.Sql/servers/elasticpools', variables('sqlServerNameTidy') , variables('sqlElasticPoolTidy'))]",
+	"collation": "[parameters('sqlDatabaseCollation')]"
+    },
           "resources": [
             {
               "name": "current",
@@ -1228,12 +1223,10 @@
         {
           "type": "databases",
           "apiVersion": "[variables('dbApiVersion')]",
-          "properties": {
-            "edition": "[parameters('resourceSizes').poolsSqlDatabase.Edition]",
-            "collation": "[parameters('sqlDatabaseCollation')]",
-            "maxSizeBytes": "[parameters('resourceSizes').poolsSqlDatabase.MaxSize]",
-            "requestedServiceObjectiveName": "[parameters('resourceSizes').poolsSqlDatabase.ServiceObjectiveLevel]"
-          },
+"properties": {
+  "elasticPoolId": "[resourceId('Microsoft.Sql/servers/elasticpools', variables('sqlServerNameTidy') , variables('sqlElasticPoolTidy'))]",
+  "collation": "[parameters('sqlDatabaseCollation')]"
+},
           "resources": [
             {
               "name": "current",
@@ -1258,12 +1251,10 @@
         {
           "type": "databases",
           "apiVersion": "[variables('dbApiVersion')]",
-          "properties": {
-            "edition": "[parameters('resourceSizes').tasksSqlDatabase.Edition]",
-            "collation": "[parameters('sqlDatabaseCollation')]",
-            "maxSizeBytes": "[parameters('resourceSizes').tasksSqlDatabase.MaxSize]",
-            "requestedServiceObjectiveName": "[parameters('resourceSizes').tasksSqlDatabase.ServiceObjectiveLevel]"
-          },
+"properties": {
+  "elasticPoolId": "[resourceId('Microsoft.Sql/servers/elasticpools', variables('sqlServerNameTidy') , variables('sqlElasticPoolTidy'))]",
+  "collation": "[parameters('sqlDatabaseCollation')]"
+},
           "resources": [
             {
               "name": "current",
@@ -1288,12 +1279,10 @@
         {
           "type": "databases",
           "apiVersion": "[variables('dbApiVersion')]",
-          "properties": {
-            "edition": "[parameters('resourceSizes').formsSqlDatabase.Edition]",
-            "collation": "[parameters('sqlDatabaseCollation')]",
-            "maxSizeBytes": "[parameters('resourceSizes').formsSqlDatabase.MaxSize]",
-            "requestedServiceObjectiveName": "[parameters('resourceSizes').formsSqlDatabase.ServiceObjectiveLevel]"
-          },
+"properties": {
+  "elasticPoolId": "[resourceId('Microsoft.Sql/servers/elasticpools', variables('sqlServerNameTidy') , variables('sqlElasticPoolTidy'))]",
+  "collation": "[parameters('sqlDatabaseCollation')]"
+},
           "resources": [
             {
               "name": "current",
@@ -1318,12 +1307,10 @@
         {
           "type": "databases",
           "apiVersion": "[variables('dbApiVersion')]",
-          "properties": {
-            "edition": "[parameters('resourceSizes').exmMasterSqlDatabase.Edition]",
-            "collation": "[parameters('sqlDatabaseCollation')]",
-            "maxSizeBytes": "[parameters('resourceSizes').exmMasterSqlDatabase.MaxSize]",
-            "requestedServiceObjectiveName": "[parameters('resourceSizes').exmMasterSqlDatabase.ServiceObjectiveLevel]"
-          },
+"properties": {
+  "elasticPoolId": "[resourceId('Microsoft.Sql/servers/elasticpools', variables('sqlServerNameTidy') , variables('sqlElasticPoolTidy'))]",
+  "collation": "[parameters('sqlDatabaseCollation')]"
+},
           "resources": [
             {
               "name": "current",

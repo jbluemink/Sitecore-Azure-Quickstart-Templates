@@ -390,7 +390,7 @@
     },
     "applicationInsightsLocation": {
       "type": "string",
-      "defaultValue": "East US"
+      "defaultValue": "West Europe"
     },
     "storeSitecoreCountersInApplicationInsights": {
       "type": "bool",
