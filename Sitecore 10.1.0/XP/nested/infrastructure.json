@@ -170,6 +170,14 @@
 	"description": "Array with custom Firewall rules for the SQL Server"
     }
 },
+"sqlPerDatabasePerformanceMin": {
+    "type": "string",
+    "defaultValue": "0"
+},
+"perDatabasePerformanceMax": {
+    "type": "string",
+    "defaultValue": "100"
+},
     "coreSqlDatabaseName": {
       "type": "string",
       "minLength": 1,
