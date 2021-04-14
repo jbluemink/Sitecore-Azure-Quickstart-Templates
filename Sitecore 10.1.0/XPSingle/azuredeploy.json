@@ -504,7 +504,14 @@
       "minLength": 1,
       "defaultValue": "[resourceGroup().id]"
     },
-
+    "aseName":{
+      "type": "string",
+      "defaultValue": ""
+    },
+    "aseResourceGroupName":{
+      "type": "string",
+      "defaultValue": "[resourceGroup().name]"
+    },
     "nodeJsVersion": {
       "type" : "string",
       "defaultValue" : "8.11.1"

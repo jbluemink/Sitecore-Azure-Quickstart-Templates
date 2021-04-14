@@ -37,6 +37,20 @@
       "cortexProcessingEngineStorage": "processingenginestorage"
     }
   },
+"useAse": "[not(empty(parameters('aseName')))]",
+    "aseResourceId": "[resourceId(parameters('aseResourceGroupName'), 'Microsoft.Web/hostingEnvironments', parameters('aseName'))]",
+    "hostingPlanProperties": {
+      "xcBasicProperties": {
+        "name": "[variables('xcSingleHostingPlanNameTidy')]"
+      },
+      "xcBasicPropertiesWithASE": {
+        "name": "[variables('xcSingleHostingPlanNameTidy')]",
+        "hostingEnvironmentProfile": {
+          "id": "[variables('aseResourceId')]"
+        }
+      },
+    }
+  },
   "parameters": {
     "deploymentId": {
       "type": "string",
@@ -131,6 +145,10 @@
       "type": "string",
       "defaultValue": "S1"
     },
+    "xcSingleHostingPlanSkuNameIsolated": {
+      "type": "string",
+      "defaultValue": "I1"
+    },
     "xcSingleHostingPlanSkuCapacity": {
       "type": "int",
       "defaultValue": 1
@@ -148,12 +166,10 @@
       "name": "[variables('xcSingleHostingPlanNameTidy')]",
       "apiVersion": "[variables('serverFarmApiVersion')]",
       "sku": {
-        "name": "[parameters('xcSingleHostingPlanSkuName')]",
+	"name": "[if(not(variables('useAse')), parameters('xcSingleHostingPlanSkuName'), parameters('xcSingleHostingPlanSkuNameIsolated'))]",
         "capacity": "[parameters('xcSingleHostingPlanSkuCapacity')]"
       },
-      "properties": {
-        "name": "[variables('xcSingleHostingPlanNameTidy')]"
-      },
+       "properties": "[if(not(variables('useAse')), variables('xcSingleHostingPlanNameTidy'), variables('xcSingleHostingPlanSkuNameIsolated'))]",
       "location": "[parameters('location')]",
       "tags": {
         "provider": "[variables('sitecoreTags').provider]",

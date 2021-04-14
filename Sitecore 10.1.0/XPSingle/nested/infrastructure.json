@@ -43,6 +43,23 @@
       "exmmaster" : "exmmaster"
     }
   },
+      "useAse": "[not(empty(parameters('aseName')))]",
+      "aseResourceId": "[resourceId(parameters('aseResourceGroupName'), 'Microsoft.Web/hostingEnvironments', parameters('aseName'))]",
+      "hostingPlanProperties":{
+        "singleHostingPlanProperties":{
+          "name": "[variables('singleHostingPlanNameTidy')]"
+        },
+        "singleHostingPlanPropertiesWithASE":{
+          "name": "[variables('singleHostingPlanNameTidy')]",
+          "hostingEnvironmentProfile": {
+            "id": "[variables('aseResourceId')]"
+          }
+        }
+        "authCertificateHostingEnvironmentProfile": {
+	 "id": "[variables('aseResourceId')]"
+       }
+      }
+  },
   "parameters": {
     "deploymentId": {
       "type": "string",
@@ -198,6 +215,10 @@
       "type": "string",
       "defaultValue": "S3"
     },
+    "singleHostingPlanSkuNameIsolated": {
+      "type": "string",
+      "defaultValue": "I3"
+    },
     "singleHostingPlanSkuCapacity": {
       "type": "int",
       "defaultValue": 1
@@ -233,12 +254,10 @@
       "name": "[variables('singleHostingPlanNameTidy')]",
       "apiVersion": "[variables('serverFarmApiVersion')]",
       "sku": {
-        "name": "[parameters('singleHostingPlanSkuName')]",
-        "capacity": "[parameters('singleHostingPlanSkuCapacity')]"
+       "name": "[if(not(variables('useAse')), parameters('singleHostingPlanSkuName'), parameters('singleHostingPlanSkuNameIsolated'))]",
+       "capacity": "[parameters('singleHostingPlanSkuCapacity')]"
       },
-      "properties": {
-        "name": "[variables('singleHostingPlanNameTidy')]"
-      },
+      "properties": "[if(not(variables('useAse')), variables('hostingPlanProperties').singleHostingPlanProperties, variables('hostingPlanProperties').singleHostingPlanPropertiesWithASE)]",
       "location": "[parameters('location')]",
       "tags": {
         "provider": "[variables('sitecoreTags').provider]",
@@ -595,7 +614,8 @@
       ],
       "properties": {
         "password": "[parameters('authCertificatePassword')]",
-        "pfxBlob": "[parameters('authCertificateBlob')]"
+        "pfxBlob": "[parameters('authCertificateBlob')]",
+          "hostingEnvironmentProfile": "[if(variables('useAse'), variables('hostingPlanProperties').authCertificateHostingEnvironmentProfile, '')]"
       },
       "tags": {
         "provider": "[variables('sitecoreTags').provider]"
