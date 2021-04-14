@@ -53,12 +53,11 @@
           "name": "[variables('singleHostingPlanNameTidy')]",
           "hostingEnvironmentProfile": {
             "id": "[variables('aseResourceId')]"
-          }
-        }
+          },
         "authCertificateHostingEnvironmentProfile": {
 	 "id": "[variables('aseResourceId')]"
        }
-      }
+    }
   },
   "parameters": {
     "deploymentId": {
