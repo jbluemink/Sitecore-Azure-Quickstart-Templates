@@ -35,8 +35,9 @@
       "messaging": "messaging",
       "cortexProcessingEngineTasks": "processingenginetasks",
       "cortexProcessingEngineStorage": "processingenginestorage"
-  },
-"useAse": "[not(empty(parameters('aseName')))]",
+    },
+
+    "useAse": "[not(empty(parameters('aseName')))]",
     "aseResourceId": "[resourceId(parameters('aseResourceGroupName'), 'Microsoft.Web/hostingEnvironments', parameters('aseName'))]",
     "hostingPlanProperties": {
       "xcBasicProperties": {
@@ -46,9 +47,9 @@
         "name": "[variables('xcSingleHostingPlanNameTidy')]",
         "hostingEnvironmentProfile": {
           "id": "[variables('aseResourceId')]"
-        }
+          }
+      }
     }
-  }
   },
   "parameters": {
     "deploymentId": {
