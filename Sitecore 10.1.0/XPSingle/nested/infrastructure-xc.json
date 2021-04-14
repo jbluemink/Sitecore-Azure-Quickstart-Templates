@@ -178,7 +178,7 @@
 	"name": "[if(not(variables('useAse')), parameters('xcSingleHostingPlanSkuName'), parameters('xcSingleHostingPlanSkuNameIsolated'))]",
         "capacity": "[parameters('xcSingleHostingPlanSkuCapacity')]"
       },
-       "properties": "[if(not(variables('useAse')), variables('xcSingleHostingPlanNameTidy'), variables('xcSingleHostingPlanSkuNameIsolated'))]",
+      "properties": "[if(not(variables('useAse')), variables('hostingPlanProperties').xcBasicProperties, variables('hostingPlanProperties').xcBasicPropertiesWithASE)]",
       "location": "[parameters('location')]",
       "tags": {
         "provider": "[variables('sitecoreTags').provider]",

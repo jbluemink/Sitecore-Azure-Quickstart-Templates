@@ -395,6 +395,10 @@
       "type": "string",
       "defaultValue": "S1"
     },
+    "xcSingleHostingPlanSkuNameIsolated": {
+       "type": "string",
+       "defaultValue": "I1"
+    },
     "xcSingleHostingPlanSkuCapacity": {
       "type": "int",
       "defaultValue": 1
@@ -838,6 +842,9 @@
 
           "xcSingleHostingPlanName": {
             "value": "[parameters('xcSingleHostingPlanName')]"
+          },
+          "xcSingleHostingPlanSkuNameIsolated": {
+	     "value": "[parameters('xcSingleHostingPlanSkuNameIsolated')]"
           },
           "xcSingleHostingPlanSkuName": {
             "value": "[parameters('xcSingleHostingPlanSkuName')]"
