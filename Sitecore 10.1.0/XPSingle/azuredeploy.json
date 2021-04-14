@@ -413,6 +413,10 @@
       "type": "string",
       "defaultValue": "S3"
     },
+    "singleHostingPlanSkuNameIsolated": {
+      "type": "string",
+       "defaultValue": "I3"
+    },
     "singleHostingPlanSkuCapacity": {
       "type": "int",
       "defaultValue": 1
@@ -710,11 +714,17 @@
           "singleHostingPlanName": {
             "value": "[parameters('singleHostingPlanName')]"
           },
+          "singleHostingPlanNameIsolated": {
+	    "value": "[parameters('singleHostingPlanNameIsolated')]"
+          },
           "singleHostingPlanSkuCapacity": {
             "value": "[parameters('singleHostingPlanSkuCapacity')]"
           },
           "singleHostingPlanSkuName": {
             "value": "[parameters('singleHostingPlanSkuName')]"
+          },
+          "singleHostingPlanSkuNameIsolated": {
+            "value": "[parameters('singleHostingPlanSkuNameIsolated')]"
           },
 
           "siWebAppName": {
@@ -722,6 +732,10 @@
           },
           "singleWebAppName": {
             "value": "[parameters('singleWebAppName')]"
+          },
+
+          "aseName": {
+            "value": "[parameters('aseName')]"
           },
 
           "authCertificateName": {
