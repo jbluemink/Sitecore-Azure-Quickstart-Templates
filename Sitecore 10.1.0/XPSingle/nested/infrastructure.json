@@ -246,6 +246,14 @@
     "authCertificatePassword": {
       "type": "securestring",
       "minLength": 1
+    },
+    "aseName":{
+          "type": "string",
+    "defaultValue": ""
+    },
+    "aseResourceGroupName":{
+          "type": "string",
+          "defaultValue": "[resourceGroup().name]"
     }
   },
   "resources": [

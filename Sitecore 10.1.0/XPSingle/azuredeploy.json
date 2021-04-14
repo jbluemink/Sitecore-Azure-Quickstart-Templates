@@ -848,6 +848,13 @@
 
           "xcSingleWebAppName": {
             "value": "[parameters('xcSingleWebAppName')]"
+          },
+
+          "aseName": {
+	      "value": "[parameters('aseName')]"
+	  },
+	  "aseResourceGroupName":{
+	      "value": "[parameters('aseResourceGroupName')]"
           }
         }
       },
