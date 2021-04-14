@@ -41,22 +41,23 @@
       "tasks": "prc-tasks",
       "forms": "forms",
       "exmmaster" : "exmmaster"
-    }
+    },
+
+  "useAse": "[not(empty(parameters('aseName')))]",
+  "aseResourceId": "[resourceId(parameters('aseResourceGroupName'), 'Microsoft.Web/hostingEnvironments', parameters('aseName'))]",
+  "hostingPlanProperties":{
+      "singleHostingPlanProperties":{
+  "name": "[variables('singleHostingPlanNameTidy')]"
   },
-      "useAse": "[not(empty(parameters('aseName')))]",
-      "aseResourceId": "[resourceId(parameters('aseResourceGroupName'), 'Microsoft.Web/hostingEnvironments', parameters('aseName'))]",
-      "hostingPlanProperties":{
-        "singleHostingPlanProperties":{
-          "name": "[variables('singleHostingPlanNameTidy')]"
-        },
-        "singleHostingPlanPropertiesWithASE":{
+  "singleHostingPlanPropertiesWithASE":{
           "name": "[variables('singleHostingPlanNameTidy')]",
           "hostingEnvironmentProfile": {
             "id": "[variables('aseResourceId')]"
           },
-        "authCertificateHostingEnvironmentProfile": {
+  "authCertificateHostingEnvironmentProfile": {
 	 "id": "[variables('aseResourceId')]"
        }
+    }
     }
   },
   "parameters": {
