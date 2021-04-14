@@ -714,9 +714,6 @@
           "singleHostingPlanName": {
             "value": "[parameters('singleHostingPlanName')]"
           },
-          "singleHostingPlanNameIsolated": {
-	    "value": "[parameters('singleHostingPlanNameIsolated')]"
-          },
           "singleHostingPlanSkuCapacity": {
             "value": "[parameters('singleHostingPlanSkuCapacity')]"
           },
