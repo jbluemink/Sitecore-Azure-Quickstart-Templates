@@ -43,8 +43,8 @@
       "xcBasicProperties": {
         "name": "[variables('xcSingleHostingPlanNameTidy')]"
       },
-      "xcBasicPropertiesWithASE": {
-      	"name": "[variables('xcSingleHostingPlanNameTidy')]",
+	"xcBasicPropertiesWithASE": {
+        "name": "[variables('xcSingleHostingPlanNameTidy')]",
         "hostingEnvironment": "[parameters('aseName')]",
         "hostingEnvironmentId": "[variables('aseResourceId')]"
       }
