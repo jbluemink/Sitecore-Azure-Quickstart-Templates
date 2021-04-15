@@ -55,9 +55,7 @@
         "hostingEnvironmentId": "[variables('aseResourceId')]"
       },
       "authCertificateHostingEnvironmentProfile": {
-      	"name": "[variables('singleHostingPlanNameTidy')]",
-        "hostingEnvironment": "[parameters('aseName')]",
-        "hostingEnvironmentId": "[variables('aseResourceId')]"
+      	"id": "[variables('aseResourceId')]"
       }
     }
   },
