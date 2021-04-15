@@ -47,17 +47,13 @@
   "aseResourceId": "[resourceId(parameters('aseResourceGroupName'), 'Microsoft.Web/hostingEnvironments', parameters('aseName'))]",
   "hostingPlanProperties":{
       "singleHostingPlanProperties":{
-  "name": "[variables('singleHostingPlanNameTidy')]"
-  },
-  "singleHostingPlanPropertiesWithASE":{
-          "name": "[variables('singleHostingPlanNameTidy')]",
-          "hostingEnvironmentProfile": {
-            "id": "[variables('aseResourceId')]"
-          },
-  "authCertificateHostingEnvironmentProfile": {
-	 "id": "[variables('aseResourceId')]"
-       }
-    }
+  	"name": "[variables('singleHostingPlanNameTidy')]"
+      },
+      "singleHostingPlanPropertiesWithASE":{
+      	"name": "[variables('singleHostingPlanNameTidy')]",
+        "hostingEnvironment": "[parameters('aseName')]",
+        "hostingEnvironmentId": "[variables('aseResourceId')]"
+      }
     }
   },
   "parameters": {
