@@ -621,8 +621,7 @@
       ],
       "properties": {
         "password": "[parameters('authCertificatePassword')]",
-        "pfxBlob": "[parameters('authCertificateBlob')]",
-          "hostingEnvironmentProfile": "[if(variables('useAse'), variables('hostingPlanProperties').authCertificateHostingEnvironmentProfile, '')]"
+        "pfxBlob": "[parameters('authCertificateBlob')]"
       },
       "tags": {
         "provider": "[variables('sitecoreTags').provider]"
